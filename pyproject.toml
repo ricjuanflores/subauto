@@ -1,0 +1,57 @@
+[project]
+name = "subauto"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.11"
+license = {file = "LICENSE"}
+authors = [{name = "Juan Flores", email = "juanflores.ric@gmail.com"}]
+dependencies = [
+    "ffmpeg-python>=0.2.0",
+    "google-genai>=0.3.0",
+    "openai-whisper>=20240930",
+    "rich>=13.9.4",
+    "srt>=3.5.3",
+    "typer>=0.13.0",
+]
+
+[tool.uv]
+dev-dependencies = [
+    "pytest-cov>=6.0.0",
+    "pytest-mock>=3.14.0",
+    "pytest>=8.3.4",
+    "ruff>=0.9.1",
+]
+
+[tool.mypy]
+follow_imports = "skip"
+ignore_missing_imports = true
+disable_error_code = ["arg-type"]
+allow_redefinition = true
+disallow_untyped_defs = true
+no_implicit_optional = true
+
+[tool.ruff]
+respect-gitignore = true
+target-version = "py311"
+
+[tool.ruff.lint]
+# Enable Pyflakes `E` and `F` codes by default
+select = ["E", "F", "PT", "C4", "I"]
+ignore = ["E501"]
+per-file-ignores = {}
+
+[tool.ruff.lint.mccabe]
+max-complexity = 10
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project.scripts]
+subauto = "subauto.cli:app"
+
+[tool.hatch.build]
+packages = ["subauto"]
+
+
