@@ -39,6 +39,8 @@ from subauto.utils.utils import (
     embed_subtitles,
     filename,
     get_language,
+    get_package_name,
+    get_version,
     json_to_srt,
     srt_to_json,
 )
@@ -49,6 +51,13 @@ os.environ["KMP_WARNINGS"] = "0"
 app = typer.Typer()
 console = Console()
 key_manager = APIKeyManager()
+
+def version_callback(*, value: bool) -> None:
+    if value:
+        package_name = get_package_name()
+        version = get_version(package_name=package_name)
+        typer.echo(f"{package_name} {version}")
+        raise typer.Exit()
 
 def translate_batch_with_gemini(datos: list, input_language: str, output_language: str) -> Optional[List]:
     
@@ -473,6 +482,7 @@ def process_videos(
     output_language: Annotated[Optional[str], typer.Option("--output-lang", "-ol", help="Output language for translation")]= None,
     input_language: Annotated[Optional[str], typer.Option("--input-lang", "-il", help="Video language (ex. 'es', 'en', 'fr')")] = None,
     workers: Annotated[Optional[int], typer.Option("--workers", "-w", help="Number of processes (default 2)")] = 2,
+    version: Annotated[Optional[bool], typer.Option("--version", "-v", callback=version_callback, is_eager=True)] = None,
 ) -> None:
     
     if ctx.invoked_subcommand:

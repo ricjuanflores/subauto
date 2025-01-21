@@ -900,7 +900,7 @@ sdist = { url = "https://files.pythonhosted.org/packages/66/b7/4a1bc231e0681ebf3
 
 [[package]]
 name = "subauto"
-version = "0.1.0"
+version = "0.0.2"
 source = { editable = "." }
 dependencies = [
     { name = "ffmpeg-python" },
