@@ -15,6 +15,11 @@ dependencies = [
     "typer>=0.13.0",
 ]
 
+[project.urls]
+Homepage = "https://github.com/ricjuanflores/subauto"
+Repository = "https://github.com/ricjuanflores/subauto"
+Issues = "https://github.com/ricjuanflores/subauto/issues"
+
 [tool.uv]
 dev-dependencies = [
     "pytest-cov>=6.0.0",
